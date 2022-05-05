@@ -1,7 +1,7 @@
 test:
   image: archlinux
   before_script:
-    - pacman -Syu --noconfirm asciidoc perl
+    - pacman -Syu --noconfirm asciidoc autoconf fakeroot pacman perl
     - ./autogen.sh
     - ./configure
     - make
