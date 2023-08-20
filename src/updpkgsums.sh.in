@@ -51,7 +51,8 @@ version() {
 }
 
 die() {
-	printf "==> ERROR: %s\n" "$1" "${@:2}" >&2
+	# shellcheck disable=SC2059
+	printf "==> ERROR: $1\n" "${@:2}" >&2
 	exit 1
 }
 
