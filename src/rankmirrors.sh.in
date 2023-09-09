@@ -44,6 +44,7 @@ Options:
   -t, --times           only output mirrors and their response times
   -u, --url             test a specific URL
   -v, --verbose         be verbose in output
+  -w, --working-only    only output mirrors that respond within the timeout
   -h, --help            display this help message and exit
   -V, --version         display version information and exit
 EOF
@@ -70,9 +71,10 @@ err() {
 # returns the fetching time, or timeout, or unreachable
 gettime() {
 	IFS=' ' read -ra output <<< "$(curl -s -m "$MAX_TIME" -w "%{time_total} %{http_code}" "$1" -o/dev/null)"
-	(( $? == 28 )) && echo timeout && return
-	(( output[1] >= 400 || ! output[1] )) && echo unreachable && return
+	(( $? == 28 )) && { echo timeout; return 1; }
+	(( output[1] >= 400 || ! output[1] )) && { echo unreachable; return 1; }
 	echo "${output[0]}"
+	return 0
 }
 
 # getfetchurl serverurl (e.g. getturl http://foo.com/core/os/i686)
@@ -158,6 +160,7 @@ while [[ $1 ]]; do
 				URL="$2";
 				shift 2;;
 			verbose) VERBOSE=1 ; shift ;;
+			working-only) WORKING_ONLY=1 ; shift ;;
 			help) usage ;;
 			version) version ;;
 			*) err "'$1' is an invalid argument."
@@ -195,6 +198,7 @@ while [[ $1 ]]; do
 						URL="$2";
 						snum=2;;
 					v) VERBOSE=1 ;;
+					w) WORKING_ONLY=1 ;;
 					h) usage ;;
 					V) version ;;
 					*) err "'$1' is an invalid argument." ;;
@@ -242,8 +246,9 @@ get_url_time() {
 	server=$1
 	url="$(getfetchurl "$server")"
 	[[ $url = fail ]] && err "URL '$server' is malformed."
-	time=$(gettime "$url")
-	echo "$time $server" >>"$tmpfile"
+	if time=$(gettime "$url") || ! [[ $WORKING_ONLY ]]; then
+		echo "$time $server" >>"$tmpfile"
+	fi
 
 	# Output
 	if [[ $VERBOSE && $TIMESONLY ]]; then
@@ -259,7 +264,7 @@ tmpfile=$(mktemp)
 if [[ $PARALLEL ]]; then
 	servers=()
 	# Exports for GNU parallel
-	export MAX_TIME ARCH TARGETREPO VERBOSE TIMESONLY tmpfile
+	export MAX_TIME ARCH TARGETREPO VERBOSE TIMESONLY WORKING_ONLY tmpfile
 	export -f getfetchurl gettime get_url_time
 fi
 for line in "${linearray[@]}"; do
