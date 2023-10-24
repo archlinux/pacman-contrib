@@ -95,6 +95,7 @@ AM_CPPFLAGS = \
 	-DGPGDIR=\"$(gpgdir)\"
 
 AM_CFLAGS = \
+	-fstack-protector-all \
 	-pedantic \
 	-D_GNU_SOURCE \
 	$(WARNING_CFLAGS) \

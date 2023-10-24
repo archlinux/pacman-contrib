@@ -4,6 +4,7 @@ AC_CONFIG_AUX_DIR([build-aux])
 AC_REQUIRE_AUX_FILE([tap-driver.sh])
 
 AM_INIT_AUTOMAKE([-Wall foreign])
+CPPFLAGS="$CPPFLAGS -D_FORTIFY_SOURCE=2"
 
 # Help line for root directory
 AC_ARG_WITH(root-dir,
@@ -113,9 +114,6 @@ AM_CONDITIONAL(WANT_DOC, test "x$wantdoc" = "xyes")
 # Enable or disable debug code
 if test "x$debug" = "xyes" ; then
 	AC_MSG_RESULT(yes)
-	GCC_STACK_PROTECT_LIB
-	GCC_STACK_PROTECT_CC
-	GCC_FORTIFY_SOURCE_CC
 	WARNING_CFLAGS="-g -Wall -Werror"
 else
 	AC_MSG_RESULT(no)
