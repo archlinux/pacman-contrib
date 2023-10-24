@@ -1,4 +1,4 @@
-AC_INIT([pacman-contrib], [1.9.1], [pacman-contrib@lists.archlinux.org])
+AC_INIT([pacman-contrib],[1.9.1],[pacman-contrib@lists.archlinux.org])
 AC_CONFIG_MACRO_DIR([m4])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_REQUIRE_AUX_FILE([tap-driver.sh])
@@ -38,7 +38,6 @@ AC_ARG_ENABLE(git-version,
 
 # Checks for programs.
 AC_PROG_CC
-AC_PROG_CC_C99
 AC_PATH_PROGS([BASH_SHELL], [bash bash4], [false])
 
 AS_IF([test "x$BASH_SHELL" = "xfalse"],
