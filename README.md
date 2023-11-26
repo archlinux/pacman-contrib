@@ -27,8 +27,8 @@ make install DESTDIR="$pkgdir"
 - pacdiff - a simple pacnew/pacsave updater for /etc/.
 
 - paclist - list all packages installed from a given repository. Useful for
-  seeing which packages you may have installed from the testing repository, for
-  instance.
+  seeing which packages you may have installed from the testing repositories,
+  for instance.
 
 - paclog-pkglist - list currently installed packages based pacman's log.
 
