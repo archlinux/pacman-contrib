@@ -14,9 +14,9 @@ Synopsis
 Description
 -----------
 'paclist' will list all packages installed on the system from a given repository.
-Useful for seeing which packages you may have installed from the testing repository,
+Useful for seeing which packages you may have installed from the testing repositories,
 for instance.
-Example: paclist testing
+Example: paclist core-testing
 
 
 Options

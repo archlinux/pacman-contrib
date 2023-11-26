@@ -32,7 +32,7 @@ Options:
   -h, --help     show this help message and exit
   -V, --version  display version information and exit
 
-Example: ${myname} testing
+Example: ${myname} core-testing
 EOF
 }
 
