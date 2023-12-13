@@ -34,6 +34,10 @@ Options
 	is updated regularly through some other means such as a cronjob or systemd
 	timer.
 
+*-c, \--change*::
+	Check for new available updates only, prints the list of available updates
+	only if it differs from the last time checkupdates was run with that option.
+
 *-V, \--version*::
 	Display version information.
 
@@ -44,9 +48,15 @@ Environment
 	Override the default '$\{TMPDIR:-/tmp}/checkup-db-$\{UID}' temporary
 	database location.
 
+*CHECKUPDATES_CHANGE*::
+	Override the default '\${XDG_STATE_HOME:-$HOME/.local/state}/checkupdates'
+	state file location for the -c/--change option.
+
 *TMPDIR*::
 	Override the default '/tmp' temporary directory.
 
+*XDG_STATE_HOME*::
+	Override the default '$HOME/.local/state' state directory
 
 Errors
 ------
