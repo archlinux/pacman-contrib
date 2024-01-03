@@ -7,9 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+## [1.10.0] - 2024-01-02
+
 ### Added
 
 - rankmirrors: Add --working-only option to only output working mirrors (!37) (Victor Westerhuis)
+- checkupdates: Add the -c/--change option to print only when available updates differ from the last --change run (!40) (Robin Candau)
 
 ### Fixed
 
