@@ -20,7 +20,7 @@
 # FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
 # IN THE SOFTWARE.
 #
-# Project URL: http://github.com/andrewgregory/tap.sh
+# Project URL: https://github.com/andrewgregory/tap.sh
 
 declare -i tap_planned=0 tap_run=0 tap_failed=0 tap_passed=0
 declare tap_todo=''
