@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 
+### Fixed
+
+- paccache: Fix regression when using multiple cache directories (Harald)
+
 ## [1.10.0] - 2024-01-02
 
 ### Added
@@ -253,6 +257,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 [1.8.2]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.8.0...v1.8.2
 [1.9.0]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.8.2...v1.9.0
 [1.9.1]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.9.0...v1.9.1
+[1.10.0]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.9.1...v1.10.0
 [unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.9.1...master
 
 <!-- markdownlint-disable-file MD013 MD024 -->

@@ -327,7 +327,7 @@ fi
 
 # setting default cachedirs
 if [[ -z "${cachedirs[0]}" ]]; then
-	cachedirs=("$(pacman-conf CacheDir)")
+	mapfile -t cachedirs < <(pacman-conf CacheDir)
 fi
 
 # remaining args are a whitelist
