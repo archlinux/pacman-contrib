@@ -20,6 +20,10 @@ updates with the old and new version.
 
 Options
 -------
+*-c, \--change*::
+	Check for new available updates only, prints the list of available updates
+	only if it differs from the last time checkupdates was run with that option.
+
 *-d, \--download*::
 	Download any pending updates to the pacman cache.
 
@@ -27,16 +31,13 @@ Options
 	Display syntax and command-line options.
 
 *\--nocolor*::
-	Do not colorize output.
+	Do not colorize output. `Color` must be enabled in `pacman.conf` for the
+	listing to be colored to begin with.
 
 *-n, \--nosync*::
 	Do not sync the temporary database, works best when the temporary database
 	is updated regularly through some other means such as a cronjob or systemd
 	timer.
-
-*-c, \--change*::
-	Check for new available updates only, prints the list of available updates
-	only if it differs from the last time checkupdates was run with that option.
 
 *-V, \--version*::
 	Display version information.
