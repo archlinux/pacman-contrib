@@ -81,7 +81,7 @@ print_db() {
 	pkg=${pkg/ /-}
 	for file in "$pac_db"/"$pkg"*/install; do
 		if [ -f "$file" ]; then
-			cat "$pac_db/$pkg*/install"
+			cat "$pac_db/$pkg"*/install
 			echo
 			return 0
 		else
