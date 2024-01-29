@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.10.4] - 2024-01-29
+
+### Fixed
+
+- checkupdates: Remove color code from the "updates" array when using the --download option (!44) (Robin Candau)
+- checkupdates: Add zsh completion for --change (27b854fe) (Daniel M. Capella)
+
 ## [1.10.3] - 2024-01-27
 
 ### Fixed
@@ -275,6 +282,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 [1.10.1]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.0...v1.10.1
 [1.10.2]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.1...v1.10.2
 [1.10.3]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.2...v1.10.3
+[1.10.4]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.3...v1.10.4
 [unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.9.1...master
 
 <!-- markdownlint-disable-file MD013 MD024 -->
