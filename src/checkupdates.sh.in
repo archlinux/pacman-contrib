@@ -126,7 +126,7 @@ else
 	unset ALL_OFF BOLD BLUE GREEN RED YELLOW
 fi
 
-if ! type -P fakeroot >/dev/null; then
+if ! type -p fakeroot >/dev/null; then
 	die 'Cannot find the fakeroot binary'
 fi
 
