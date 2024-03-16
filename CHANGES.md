@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.10.5] - 2024-03-16
+
+### Changed
+
+- Vim: Adapt to the recent switch to SPDX identifiers for the license array (!46) (Robin Candau)
+- pacdiff: Be compatible with plocate (!45) (Tilman Blumenbach)
+
 ## [1.10.4] - 2024-01-29
 
 ### Fixed
@@ -283,6 +290,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 [1.10.2]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.1...v1.10.2
 [1.10.3]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.2...v1.10.3
 [1.10.4]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.3...v1.10.4
-[unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.9.1...master
+[1.10.5]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.4...v1.10.5
+[unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.5...master
 
 <!-- markdownlint-disable-file MD013 MD024 -->
