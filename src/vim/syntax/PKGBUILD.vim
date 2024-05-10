@@ -69,7 +69,7 @@ syn match pbLicense /AGPL-3\.0-only\|AGPL-3\.0-or-later\|Apache-2\.0\|Artistic-1
 " multiple licenses combination expressions
 syn keyword pbLicenseCombination AND OR WITH contained
 " special cases from https://wiki.archlinux.org/index.php/PKGBUILD#license
-syn keyword pbLicenseSpecial BSD-1-Clause BSD-2-Clause BSD-3-Clause ISC MIT OFL Python ZLIB contained
+syn keyword pbLicenseSpecial BSD-1-Clause BSD-2-Clause BSD-3-Clause ISC MIT OFL Python Zlib contained
 syn match pbLicenseCustom /custom\(:[[:alnum:].]*\)*\|LicenseRef\(-[[:alnum:].]*\)*/ contained
 syn keyword pbLicenseUnknown unknown contained
 syn match pbIllegalLicense /[^='"() ]/ contained contains=pbLicenseUnknown,pbLicenseCustom,pbLicenseSpecial,pbLicense
