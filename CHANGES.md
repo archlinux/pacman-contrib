@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.10.6] - 2024-05-10
+
+### Changed
+
+- Vim: Allow "x86_64_v3" for $arch (!47) (Frederik “Freso” S. Olesen)
+
+### Fixed
+
+- Vim: Fix the Zlib license SPDX identifier (!48) (Robin Candau)
+- pacscripts: Revert 'printf' lint (!49) (Justin Gassner)
+
 ## [1.10.5] - 2024-03-16
 
 ### Changed
@@ -291,6 +302,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 [1.10.3]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.2...v1.10.3
 [1.10.4]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.3...v1.10.4
 [1.10.5]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.4...v1.10.5
-[unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.5...master
+[1.10.5]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.5...v1.10.6
+[unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.6...master
 
 <!-- markdownlint-disable-file MD013 MD024 -->
