@@ -17,6 +17,7 @@ bin_PROGRAMS = pacsort pactree
 vim_ftdetect_dir = $(vim_dir)/ftdetect
 vim_ftplugin_dir = $(vim_dir)/ftplugin
 vim_syntax_dir = $(vim_dir)/syntax
+vim_indent_dir = $(vim_dir)/indent
 
 vim_ftdetect__DATA = \
 	vim/ftdetect/PKGBUILD.vim \
@@ -28,6 +29,9 @@ vim_ftplugin__DATA = \
 vim_syntax__DATA = \
 	vim/syntax/PKGBUILD.vim \
 	vim/syntax/SRCINFO.vim
+
+vim_indent__DATA = \
+	vim/indent/PKGBUILD.vim
 
 systemd_dir = ${libdir}/systemd/system
 
@@ -74,6 +78,7 @@ EXTRA_DIST = \
 	updpkgsums.sh.in \
 	vim/syntax/PKGBUILD.vim \
 	vim/syntax/SRCINFO.vim \
+	vim/indent/PKGBUILD.vim \
 	vim/ftdetect/PKGBUILD.vim \
 	vim/ftdetect/SRCINFO.vim \
 	vim/ftplugin/PKGBUILD.vim
