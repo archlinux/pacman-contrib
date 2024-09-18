@@ -276,12 +276,12 @@ else
 	unset ALL_OFF BOLD BLUE GREEN RED YELLOW
 fi
 
-if ! type -p "${diffprog%% *}" >/dev/null && (( ! OUTPUTONLY )); then
-	die "Cannot find the $diffprog binary required for viewing differences."
-fi
-
-if ! type -p "${mergeprog%% *}" >/dev/null && (( ! OUTPUTONLY )); then
-	die "Cannot find the $mergeprog binary required for merging differences."
+if (( ! OUTPUTONLY )); then
+	if ! type -p "${diffprog%% *}" >/dev/null; then
+		die "Cannot find the $diffprog binary required for viewing differences."
+	elif ! type -p "${mergeprog%% *}" >/dev/null; then
+		die "Cannot find the $mergeprog binary required for merging differences."
+	fi
 fi
 
 case $(( USE_FIND + USE_LOCATE + USE_PACDB )) in
