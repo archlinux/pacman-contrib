@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.11.0] - 2025-02-01
+
+### Added
+
+- paccache: Support passing extra arguments to the paccache service from a "config" file (!53) (Robin Candau)
+
+### Fixed
+
+- Vim: actually install the indent file (!51) (Ivan Shapovalov)
+- Update the possible options of the options array in PKGBUILD.vim (!52) (Quentin Michaud)
+- vim: syntax: Allow array in pkgname (!54) (Yao Zi)
+
 ## [1.10.6] - 2024-05-10
 
 ### Changed
@@ -302,7 +314,8 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 [1.10.3]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.2...v1.10.3
 [1.10.4]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.3...v1.10.4
 [1.10.5]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.4...v1.10.5
-[1.10.5]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.5...v1.10.6
+[1.10.6]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.5...v1.10.6
+[1.11.0]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.6...v1.11.0
 [unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.6...master
 
 <!-- markdownlint-disable-file MD013 MD024 -->
