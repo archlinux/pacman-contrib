@@ -33,6 +33,11 @@ vim_syntax__DATA = \
 vim_indent__DATA = \
 	vim/indent/PKGBUILD.vim
 
+sysconf_conf_d_dir = ${sysconfdir}/conf.d
+
+sysconf_conf_d__DATA = \
+	conf.d/pacman-contrib
+
 systemd_dir = ${libdir}/systemd/system
 
 systemd__DATA = \
@@ -62,6 +67,7 @@ OURFILES = \
 
 EXTRA_DIST = \
 	checkupdates.sh.in \
+	conf.d/pacman-contrib \
 	paccache.service.in \
 	paccache.sh.in \
 	paccache.timer \
