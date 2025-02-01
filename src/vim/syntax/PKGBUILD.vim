@@ -18,7 +18,7 @@ syn case match
 " FIXME if '=' is in pkgname/pkgver, it highlights whole string, not just '='
 syn keyword pb_k_pkgname pkgname contained
 syn match pbValidPkgname /[[:alnum:]@._+-]{,32}/ contained contains=pbIllegalPkgname
-syn match pbIllegalPkgname /[[:upper:]]\|[^[:alnum:]=@._+-]\|=.*=\|=['"]\?.\{33,\}['"]\?/ contained
+syn match pbIllegalPkgname /[[:upper:]]\|[^[:alnum:]=@._+-\ ()]\|=.*=\|=['"]\?.\{33,\}['"]\?/ contained
 syn match pbPkgnameGroup /^pkgname=.*/ contains=pbIllegalPkgname,pb_k_pkgname,shDoubleQuote,shSingleQuote
 
 " pkgbase
