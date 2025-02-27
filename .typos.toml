@@ -1,0 +1,11 @@
+[default.extend-identifiers]
+# False-positive in completions/zsh/_pacscripts (pacman -Slq)
+Slq = 'Slq'
+
+[type.md.extend-identifiers]
+# False-positive in CHANGES.md (commit hash)
+95ba86e3 = '95ba86e3'
+
+[type.vimscript.extend-identifiers]
+# False-positives in src/vim/syntax/PKGBUILD.vim (pbLicense syntax group)
+ND = 'ND'

@@ -27,7 +27,7 @@
 #include <alpm.h>
 
 #define DELIM ' '
-#define INVALD_ESCAPE_CHAR ((char)-1)
+#define INVALID_ESCAPE_CHAR ((char)-1)
 
 #ifndef MIN
 #define MIN(a, b)      \
@@ -386,13 +386,13 @@ static int vercmp(const void *p1, const void *p2)
 static char escape_char(const char *string)
 {
 	if(!string) {
-		return INVALD_ESCAPE_CHAR;
+		return INVALID_ESCAPE_CHAR;
 	}
 
 	const size_t len = strlen(string);
 
 	if(len > 2) {
-		return INVALD_ESCAPE_CHAR;
+		return INVALID_ESCAPE_CHAR;
 	}
 
 	if(len == 1) {
@@ -400,7 +400,7 @@ static char escape_char(const char *string)
 	}
 
 	if(*string != '\\') {
-		return INVALD_ESCAPE_CHAR;
+		return INVALID_ESCAPE_CHAR;
 	}
 
 	switch(string[1]) {
@@ -413,7 +413,7 @@ static char escape_char(const char *string)
 		case '0':
 			return '\0';
 		default:
-			return INVALD_ESCAPE_CHAR;
+			return INVALID_ESCAPE_CHAR;
 	}
 }
 
@@ -472,7 +472,7 @@ static int parse_options(int argc, char **argv)
 				break;
 			case 't':
 				opts.delim = escape_char(optarg);
-				if(opts.delim == INVALD_ESCAPE_CHAR) {
+				if(opts.delim == INVALID_ESCAPE_CHAR) {
 					fprintf(stderr, "error: invalid field separator -- `%s'\n", optarg);
 					return 1;
 				}
