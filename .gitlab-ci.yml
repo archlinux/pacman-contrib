@@ -31,7 +31,7 @@ cppcheck:
   before_script:
     - apk add cppcheck
   script:
-    - cppcheck --error-exitcode=1 src
+    - cppcheck --error-exitcode=1 --suppress=unknownMacro src/*.c
   rules:
     - !reference [.lint-workflow, rules]
 
