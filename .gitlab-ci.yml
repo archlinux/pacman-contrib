@@ -55,6 +55,17 @@ shellcheck:
   rules:
     - !reference [.lint-workflow, rules]
 
+typos:
+  image: alpine
+  variables:
+    FILE_GLOB: "**/*"
+  before_script:
+    - apk add typos --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+  script:
+    - typos
+  rules:
+    - !reference [.lint-workflow, rules]
+
 vint:
   image: alpine
   variables:
