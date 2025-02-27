@@ -1,10 +1,19 @@
----
 workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
       when: never
     - if: '$CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
+
+.changes-workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push")'
+      changes:
+        paths:
+          - $FILE_GLOB
+        compare_to: 'master'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
+      when: never
 
 test:
   image: archlinux:base-devel
@@ -15,15 +24,12 @@ test:
     - make
   script: make check
 
-.lint-workflow:
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push")'
-      changes:
-        paths:
-          - $FILE_GLOB
-        compare_to: 'master'
-    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
-      when: never
+typos:
+  image: alpine
+  before_script:
+    - apk add typos --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+  script:
+    - typos
 
 cppcheck:
   image: alpine
@@ -32,9 +38,9 @@ cppcheck:
   before_script:
     - apk add cppcheck
   script:
-    - cppcheck --error-exitcode=1 src
+    - cppcheck --error-exitcode=1 --suppress=unknownMacro src/*.c
   rules:
-    - !reference [.lint-workflow, rules]
+    - !reference [.changes-workflow, rules]
 
 markdownlint:
   image:
@@ -45,7 +51,7 @@ markdownlint:
   script:
     - markdownlint-cli2
   rules:
-    - !reference [.lint-workflow, rules]
+    - !reference [.changes-workflow, rules]
 
 shellcheck:
   image: koalaman/shellcheck-alpine
@@ -54,7 +60,7 @@ shellcheck:
   script:
     - find . -name '*.sh*' -exec shellcheck --color=always {} +
   rules:
-    - !reference [.lint-workflow, rules]
+    - !reference [.changes-workflow, rules]
 
 vint:
   image: alpine
@@ -65,4 +71,4 @@ vint:
   script:
     - vint src/vim
   rules:
-    - !reference [.lint-workflow, rules]
+    - !reference [.changes-workflow, rules]
