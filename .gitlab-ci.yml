@@ -26,19 +26,15 @@ test:
 
 typos:
   image: alpine
-  before_script:
-    - apk add typos --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
-  script:
-    - typos
+  before_script: apk add typos --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+  script: typos
 
 cppcheck:
   image: alpine
   variables:
     FILE_GLOB: "src/*.c"
-  before_script:
-    - apk add cppcheck
-  script:
-    - cppcheck --error-exitcode=1 --suppress=unknownMacro src/*.c
+  before_script: apk add cppcheck
+  script: cppcheck --error-exitcode=1 --suppress=unknownMacro src/*.c
   rules:
     - !reference [.changes-workflow, rules]
 
@@ -48,8 +44,7 @@ markdownlint:
     entrypoint: ['']
   variables:
     FILE_GLOB: "*.md"
-  script:
-    - markdownlint-cli2
+  script: markdownlint-cli2
   rules:
     - !reference [.changes-workflow, rules]
 
@@ -57,8 +52,7 @@ shellcheck:
   image: koalaman/shellcheck-alpine
   variables:
     FILE_GLOB: "**/*.sh*"
-  script:
-    - find . -name '*.sh*' -exec shellcheck --color=always {} +
+  script: find . -name '*.sh*' -exec shellcheck --color=always {} +
   rules:
     - !reference [.changes-workflow, rules]
 
@@ -66,9 +60,7 @@ vint:
   image: alpine
   variables:
     FILE_GLOB: "src/vim/*/*.vim"
-  before_script:
-    - apk add vint py3-setuptools
-  script:
-    - vint src/vim
+  before_script: apk add vint py3-setuptools
+  script: vint src/vim
   rules:
     - !reference [.changes-workflow, rules]
