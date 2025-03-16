@@ -29,7 +29,7 @@ diffprog=${DIFFPROG:-'vim -d'}
 diffsearchpath=${DIFFSEARCHPATH:-/etc}
 mergeprog=${MERGEPROG:-'diff3 -m'}
 cachedirs=()
-USE_COLOR='y'
+USE_COLOR=1
 SUDO=''
 declare -a oldsaves
 declare -i USE_FIND=0 USE_LOCATE=0 USE_PACDB=0 OUTPUTONLY=0 BACKUP=0 THREE_WAY_DIFF=0
@@ -252,7 +252,7 @@ while [[ -n "$1" ]]; do
 		-c|--cachedir)
 			cachedirs+=("$2"); shift;;
 		--nocolor)
-			USE_COLOR='n';;
+			USE_COLOR=0;;
 		-o|--output)
 			OUTPUTONLY=1;;
 		-s|--sudo)
@@ -270,7 +270,7 @@ while [[ -n "$1" ]]; do
 done
 
 # check if messages are to be printed using color
-if [[ -t 2 && $USE_COLOR != "n" ]]; then
+if [[ -t 2 ]] && (( USE_COLOR )); then
 	colorize
 else
 	unset ALL_OFF BOLD BLUE GREEN RED YELLOW

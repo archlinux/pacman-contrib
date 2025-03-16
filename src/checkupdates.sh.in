@@ -40,11 +40,11 @@ die() {
 
 runcmd() {
 	if (( EUID != 0 )); then
-		msg 'Escalating privileges using sudo'
-		if sudo -v &>/dev/null && sudo -l &>/dev/null; then
-			sudo "$@"
+		if ! type -p sudo; then
+			error 'Cannot find the sudo binary!'
+			die "Either install \"sudo\" or run as root."
 		else
-			die 'Failed to escalate'
+			sudo "$@"
 		fi
 	else
 		"$@"
