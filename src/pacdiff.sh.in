@@ -135,7 +135,7 @@ view_diff() {
 	if (( ! THREE_WAY_DIFF )); then
 		two_way_diff
 	elif [[ -z $base_tar ]]; then
-		msg2 "Unable to find a base package. falling back to 2-way diff."
+		msg2 "Unable to find an older package for 3-way diff. Falling back to 2-way diff."
 		two_way_diff
 	else
 		basename="$(basename "$file")"
@@ -144,7 +144,7 @@ view_diff() {
 		merged="$(mktemp "$tempdir"/"$basename.merged.XXX")"
 
 		if ! bsdtar -xqOf "$base_tar" "${file#/}" >"$base"; then
-			msg2 "Unable to extract the previous version of this file. falling back to 2-way diff."
+			msg2 "Unable to extract the previous version of this file. Falling back to 2-way diff."
 			two_way_diff
 		else
 			three_way_diff
@@ -171,7 +171,7 @@ merge_file() {
 	base_tar="$(base_cache_tar "$package")"
 
 	if [[ -z $base_tar ]]; then
-		msg2 "Unable to find a base package."
+		msg2 "Unable to find an older package to base merge on."
 		return 1
 	fi
 
