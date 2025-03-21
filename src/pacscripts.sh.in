@@ -64,7 +64,7 @@ version() {
 	echo 'Copyright (c) 2009 Xavier Chantry <shiningxc@gmail.com>'
 }
 
-runcmd() {
+runasroot() {
 	if (( EUID != 0 )); then
 		if ! type -p sudo; then
 			error 'Cannot find the sudo binary!'
@@ -124,7 +124,7 @@ print_scriptlet() {
 	fi
 	url=$(pacman -Sddp "$1")
 	if [[ $url != file://* ]]; then
-		if ! runcmd pacman -Sddw --logfile /dev/null --noconfirm "$1" >&2; then
+		if ! runasroot pacman -Sddw --logfile /dev/null --noconfirm "$1" >&2; then
 			error "Failed to download $1"
 			return 1
 		fi

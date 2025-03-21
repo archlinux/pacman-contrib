@@ -38,7 +38,7 @@ die() {
 	exit 1
 }
 
-runcmd() {
+runasroot() {
 	if (( EUID != 0 )); then
 		if ! type -p sudo; then
 			error 'Cannot find the sudo binary!'
@@ -171,7 +171,7 @@ if (( ${#updates[@]} )); then
 			if (( "${#PACMAN_COLOR[@]}" )); then
 				updates=("${updates[@]#*m}")
 			fi
-			runcmd pacman -Sw --noconfirm "${updates[@]%% *}" --dbpath "$CHECKUPDATES_DB" --logfile /dev/null
+			runasroot pacman -Sw --noconfirm "${updates[@]%% *}" --dbpath "$CHECKUPDATES_DB" --logfile /dev/null
 		fi
 	fi
 else
