@@ -21,10 +21,11 @@ shopt -s extglob
 
 declare -r myname='updpkgsums'
 declare -r myver='@PACKAGE_VERSION@'
+declare    LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
 
-LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
-
-USE_COLOR=1
+declare -a MAKEPKG_OPTS
+declare -i USE_COLOR=1
+declare    buildfile='PKGBUILD'
 
 # Import libmakepkg
 # shellcheck source=/dev/null
@@ -56,9 +57,6 @@ die() {
 	error "$@"
 	exit 1
 }
-
-MAKEPKG_OPTS=()
-buildfile='PKGBUILD'
 
 while (( "$#" )); do
 	case "$1" in

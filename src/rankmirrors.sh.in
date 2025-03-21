@@ -138,7 +138,6 @@ finaloutput() {
 	exit 0
 }
 
-
 # Argument parsing
 [[ $1 ]] || usage
 while [[ $1 ]]; do
@@ -147,23 +146,23 @@ while [[ $1 ]]; do
 			max-time)
 				[[ $2 ]] || err "Must specify number.";
 				MAX_TIME="$2"
-				shift 2;;
-			parallel) PARALLEL=1 ; shift ;;
+				shift 2 ;;
+			parallel) PARALLEL=1; shift ;;
 			repo)
 				[[ $2 ]] || err "Must specify repository name.";
 				TARGETREPO="$2";
-				shift 2;;
-			times) TIMESONLY=1 ; shift ;;
+				shift 2 ;;
+			times) TIMESONLY=1; shift ;;
 			url)
 				CHECKURL=1;
 				[[ $2 ]] || err "Must specify URL.";
 				URL="$2";
-				shift 2;;
-			verbose) VERBOSE=1 ; shift ;;
-			working-only) WORKING_ONLY=1 ; shift ;;
+				shift 2 ;;
+			verbose) VERBOSE=1; shift ;;
+			working-only) WORKING_ONLY=1; shift ;;
 			help) usage ;;
 			version) version ;;
-			*) err "'$1' is an invalid argument."
+			*) err "'$1' is an invalid argument." ;;
 		esac
 	elif [[ ${1:0:1} = - ]]; then
 
@@ -176,27 +175,27 @@ while [[ $1 ]]; do
 			shift
 		else
 			snum=1
-			for ((i=1 ; i<${#1}; i++)); do
+			for ((i=1; i<${#1}; i++)); do
 				case ${1:$i:1} in
 					m)
 						[[ $2 ]] || err "Must specify number.";
 						MAX_TIME="$2"
-						snum=2;;
+						snum=2 ;;
 					n)
 						[[ $2 ]] || err "Must specify number.";
 						NUM="$2";
-						snum=2;;
+						snum=2 ;;
 					p) PARALLEL=1 ;;
 					r)
 						[[ $2 ]] || err "Must specify repository name.";
 						TARGETREPO="$2";
-						snum=2;;
+						snum=2 ;;
 					t) TIMESONLY=1 ;;
 					u)
 						CHECKURL=1;
 						[[ $2 ]] || err "Must specify URL.";
 						URL="$2";
-						snum=2;;
+						snum=2 ;;
 					v) VERBOSE=1 ;;
 					w) WORKING_ONLY=1 ;;
 					h) usage ;;

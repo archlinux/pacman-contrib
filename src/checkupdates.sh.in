@@ -20,12 +20,12 @@
 
 declare -r myname='checkupdates'
 declare -r myver='@PACKAGE_VERSION@'
+declare    LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
 
-LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
-
-DOWNLOAD_CACHE=0
-SYNC=1
-USE_COLOR=1
+declare -a PACMAN_COLOR
+declare -i DOWNLOAD_CACHE=0
+declare -i SYNC=1
+declare -i USE_COLOR=1
 
 # Import libmakepkg
 # shellcheck source=/dev/null
@@ -120,7 +120,7 @@ if [[ -t 2 ]] && (( USE_COLOR )); then
 
 	# check if pacman colors are to be kept in the updates array
 	if pacman-conf | grep -q Color; then
-		PACMAN_COLOR=1
+		PACMAN_COLOR=(--color always)
 	fi
 else
 	unset ALL_OFF BOLD BLUE GREEN RED YELLOW
@@ -153,11 +153,7 @@ if (( SYNC )); then
 	fi
 fi
 
-if (( PACMAN_COLOR )); then
-	mapfile -t updates < <(pacman --color always -Qu --dbpath "$CHECKUPDATES_DB" 2> /dev/null | grep -v '\[.*\]')
-else
-	mapfile -t updates < <(pacman -Qu --dbpath "$CHECKUPDATES_DB" 2> /dev/null | grep -v '\[.*\]')
-fi
+mapfile -t updates < <(pacman -Qu --dbpath "$CHECKUPDATES_DB" "${PACMAN_COLOR[@]}" 2> /dev/null | grep -v '\[.*\]')
 
 if (( ${#updates[@]} )); then
 	if (( CHANGE )); then
@@ -172,7 +168,7 @@ if (( ${#updates[@]} )); then
 	else
 		printf '%s\n' "${updates[@]}"
 		if (( DOWNLOAD_CACHE )); then
-			if (( PACMAN_COLOR )); then
+			if (( "${#PACMAN_COLOR[@]}" )); then
 				updates=("${updates[@]#*m}")
 			fi
 			runcmd pacman -Sw --noconfirm "${updates[@]%% *}" --dbpath "$CHECKUPDATES_DB" --logfile /dev/null

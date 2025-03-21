@@ -22,17 +22,14 @@ shopt -s extglob
 
 declare -r myname='pacdiff'
 declare -r myver='@PACKAGE_VERSION@'
+declare    LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
 
-LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
-
-diffprog=${DIFFPROG:-'vim -d'}
-diffsearchpath=${DIFFSEARCHPATH:-/etc}
-mergeprog=${MERGEPROG:-'diff3 -m'}
-cachedirs=()
-USE_COLOR=1
-SUDO=''
-declare -a oldsaves
-declare -i USE_FIND=0 USE_LOCATE=0 USE_PACDB=0 OUTPUTONLY=0 BACKUP=0 THREE_WAY_DIFF=0
+declare -a cachedirs oldsaves
+declare -i BACKUP=0 OUTPUTONLY=0 THREE_WAY_DIFF=0 USE_COLOR=1 USE_FIND=0 USE_LOCATE=0 USE_PACDB=0
+declare    diffprog=${DIFFPROG:-'vim -d'}
+declare    diffsearchpath=${DIFFSEARCHPATH:-/etc}
+declare    mergeprog=${MERGEPROG:-'diff3 -m'}
+declare    SUDO
 
 # Import libmakepkg
 # shellcheck source=/dev/null
@@ -111,7 +108,7 @@ base_cache_tar() {
 }
 
 diffprog_fn() {
-	if [[ -n "$SUDO" ]]; then
+	if [[ "$SUDO" ]]; then
 		SUDO_EDITOR="$diffprog" sudoedit "$@"
 	else
 		$diffprog "$@"
@@ -239,32 +236,32 @@ cmd() {
 	fi
 }
 
-while [[ -n "$1" ]]; do
+while [[ "$1" ]]; do
 	case "$1" in
 		-f|--find)
-			USE_FIND=1;;
+			USE_FIND=1 ;;
 		-l|--locate)
-			USE_LOCATE=1;;
+			USE_LOCATE=1 ;;
 		-p|--pacmandb)
-			USE_PACDB=1;;
+			USE_PACDB=1 ;;
 		-b|--backup)
-			BACKUP=1;;
+			BACKUP=1 ;;
 		-c|--cachedir)
-			cachedirs+=("$2"); shift;;
+			cachedirs+=("$2"); shift ;;
 		--nocolor)
-			USE_COLOR=0;;
+			USE_COLOR=0 ;;
 		-o|--output)
-			OUTPUTONLY=1;;
+			OUTPUTONLY=1 ;;
 		-s|--sudo)
-			SUDO=sudo;;
+			SUDO=sudo ;;
 		-3|--threeway)
 			THREE_WAY_DIFF=1 ;;
 		-V|--version)
-			version; exit 0;;
+			version; exit 0 ;;
 		-h|--help)
-			usage; exit 0;;
+			usage; exit 0 ;;
 		*)
-			usage; exit 1;;
+			usage; exit 1 ;;
 	esac
 	shift
 done
@@ -285,9 +282,9 @@ if (( ! OUTPUTONLY )); then
 fi
 
 case $(( USE_FIND + USE_LOCATE + USE_PACDB )) in
-	0) USE_PACDB=1;; # set the default search option
+	0) USE_PACDB=1 ;; # set the default search option
 	[^1]) error "Only one search option may be used at a time"
-	 	usage; exit 1;;
+		usage; exit 1 ;;
 esac
 
 if (( USE_PACDB )); then
@@ -337,7 +334,7 @@ while IFS= read -u 3 -r -d '' pacfile; do
 			ask "(V)iew, (M)erge, (S)kip, (R)emove %s, (O)verwrite with %s, (Q)uit: [v/m/s/r/o/q] " "$file_type" "$file_type"
 			read -r c || break
 			case $c in
-				q|Q) exit 0;;
+				q|Q) exit 0 ;;
 				r|R) $SUDO rm -v "$pacfile"; break ;;
 				o|O)
 					if (( BACKUP )); then
