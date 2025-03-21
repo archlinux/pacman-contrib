@@ -14,7 +14,9 @@ Synopsis
 Description
 -----------
 'pacscripts' will print the {pre,post}_{install,remove,upgrade} scripts of a given package
+
 Example: pacscripts gconf-editor
+
 Example: pacscripts gconf-editor-3.0.1-3-x86_64.pkg.tar.xz
 
 Options

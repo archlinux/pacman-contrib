@@ -14,7 +14,9 @@ Synopsis
 Description
 -----------
 'paclog-pkglist' will parse a log file into a list of currently installed packages.
+
 Example: paclog-pkglist /var/log/pacman.log
+
 Defaults to /var/log/pacman.log
 
 
