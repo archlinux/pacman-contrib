@@ -20,6 +20,9 @@ It can also rank one mirror if the URL is provided.
 
 Options
 -------
+*-h, \--help*::
+	Display syntax and command-line options.
+
 *-n <num>*::
 	Number of servers to output, 0 for all.
 
@@ -32,7 +35,7 @@ Options
 *-r, \--repo*::
 	Specify a repository name instead of guessing.
 
-*t, \--times*::
+*-t, \--times*::
 	Only output mirrors and their response times.
 
 *-u, \--url*::
@@ -41,11 +44,10 @@ Options
 *-v, \--verbose*::
 	Be verbose in output.
 
-*-h, \--help*::
-	Display syntax and command-line options.
-
 *-V, \--version*::
 	Display version information.
 
+*-w, \--working-only*::
+	Only output mirrors that respond within the timeout.
 
 include::footer.adoc[]

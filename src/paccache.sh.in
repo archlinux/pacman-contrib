@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# paccache - flexible pacman cache cleaning
+# paccache - Flexible pacman cache cleaning
 #
 # Copyright (C) 2011 Dave Reisner <dreisner@archlinux.org>
 #
@@ -16,7 +16,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
 
 # Expand to nothing if there are no matches
 shopt -s nullglob
@@ -201,6 +200,7 @@ Options:
   -c, --cachedir <dir>    scan "dir" for packages. can be used more than once
                           (default: read from @sysconfdir@/pacman.conf)
   -f, --force             apply force to mv(1) and rm(1) operations
+  -h, --help              display this help message and exit
   -i, --ignore <pkgs>     ignore "pkgs", comma-separated. Alternatively, specify
                           "-" to read package names from stdin, newline-
                           delimited
@@ -217,7 +217,6 @@ Options:
   -q, --quiet             minimize output
   -u, --uninstalled       target uninstalled packages
   -v, --verbose           increase verbosity. specify up to 3 times
-  -h, --help              display this help message and exit
   -V, --version           display version information and exit
 EOF
 }
@@ -228,9 +227,9 @@ version() {
 }
 
 OPT_SHORT=':a:c:dfhi:k:m:qrsuVvz'
-OPT_LONG=('arch:' 'cachedir:' 'dryrun' 'force' 'help' 'ignore:' 'keep:' 'move:'
-          'nocolor' 'quiet' 'remove' 'uninstalled' 'version' 'verbose' 'null'
-          'min-atime:' 'min-mtime:')
+OPT_LONG=('arch:' 'cachedir:' 'dryrun' 'force' 'help' 'ignore:' 'keep:'
+	  'min-atime:' 'min-mtime:' 'move:' 'nocolor' 'null' 'quiet' 'remove'
+	  'uninstalled' 'verbose' 'version')
 
 if ! parseopts "$OPT_SHORT" "${OPT_LONG[@]}" -- "$@"; then
 	exit 1
@@ -250,6 +249,9 @@ while :; do
 			dryrun=1 ;;
 		-f|--force)
 			cmdopts=(-f) ;;
+		-h|--help)
+			usage
+			exit 0 ;;
 		-i|--ignore)
 			if [[ $2 = '-' ]]; then
 				[[ ! -t 0 ]] && IFS=$'\n' read -r -d '' -a ign
@@ -300,9 +302,6 @@ while :; do
 			unset ign ;;
 		-v|--verbose)
 			(( ++verbose )) ;;
-		-h|--help)
-			usage
-			exit 0 ;;
 		-V|--version)
 			version
 			exit 0 ;;

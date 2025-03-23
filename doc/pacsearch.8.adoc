@@ -8,7 +8,7 @@ pacsearch - a colorized search combining both -Ss and -Qs output
 
 Synopsis
 --------
-'pacsearch' [-n] <pattern>
+'pacsearch' [--nocolor] <pattern>
 
 
 Description
@@ -19,11 +19,11 @@ Example: pacsearch ^gnome
 
 Options
 -------
-*-n, \--nocolor*::
-	Do no colorize output.
-
 *-h, \--help*::
 	Display syntax and command-line options.
+
+*-n, \--nocolor*::
+	Do no colorize output.
 
 *-V, \--version*::
 	Display version information.

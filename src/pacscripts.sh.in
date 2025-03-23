@@ -1,24 +1,22 @@
 #!/bin/bash
 #
-#   pacscripts : tries to print out the {pre,post}_{install,remove,upgrade}
-#   scripts of a given package
+# pacscripts - Print the {pre,post}_{install,remove,upgrade} scripts of a given package
 #
-#   Copyright (c) 2009 Xavier Chantry <shiningxc@gmail.com>
-#   Copyright (c) 2009-2016 Pacman Development Team <pacman-dev@archlinux.org>
+# Copyright (c) 2009 Xavier Chantry <shiningxc@gmail.com>
+# Copyright (c) 2009-2016 Pacman Development Team <pacman-dev@archlinux.org>
 #
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation; either version 2 of the License, or
-#   (at your option) any later version.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
 #
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#   You should have received a copy of the GNU General Public License
-#   along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 declare -r myname='pacscripts'
 declare -r myver='@PACKAGE_VERSION@'
@@ -41,11 +39,11 @@ ${myname} v${myver}
 
 Print the {pre,post}_{install,remove,upgrade} scripts of a given package.
 
-Usage: ${myname} <pkgname | pkgfile>
+Usage: ${myname} [--nocolor] <pkgname | pkgfile>
 
 Options:
-  -m, --nocolor  do not colorize output
   -h, --help     show this help message and exit
+  -m, --nocolor  do not colorize output
   -V, --version  display version information and exit
 
 Example: ${myname} gconf-editor
@@ -137,9 +135,9 @@ print_scriptlet() {
 
 while [[ $1 ]]; do
 	case "$1" in
-		--nocolor|-m) USE_COLOR=0; shift ;;
-		--help|-h) usage; exit 0 ;;
-		--version|-V) version; exit 0 ;;
+		-h|--help) usage; exit 0 ;;
+		-m|--nocolor) USE_COLOR=0; shift ;;
+		-V|--version) version; exit 0 ;;
 		*) print_scriptlet "$1"; break 2 ;;
 	esac
 done

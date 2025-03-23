@@ -1,22 +1,22 @@
 #!/bin/bash
-#   pacdiff : a simple pacnew/pacsave updater
 #
-#   Copyright (c) 2007 Aaron Griffin <aaronmgriffin@gmail.com>
-#   Copyright (c) 2013-2016 Pacman Development Team <pacman-dev@archlinux.org>
+# pacdiff - pacnew/pacsave updater
 #
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation; either version 2 of the License, or
-#   (at your option) any later version.
+# Copyright (c) 2007 Aaron Griffin <aaronmgriffin@gmail.com>
+# Copyright (c) 2013-2016 Pacman Development Team <pacman-dev@archlinux.org>
 #
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
 #
-#   You should have received a copy of the GNU General Public License
-#   along with this program.  If not, see <https://www.gnu.org/licenses/>.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 shopt -s extglob
 
@@ -57,11 +57,11 @@ General Options:
   -b, --backup          when overwriting, save old files with .bak
   -c, --cachedir <dir>  scan "dir" for 3-way merge base candidates
                         (default: read from @sysconfdir@/pacman.conf)
+  -h, --help            show this help message and exit
       --nocolor         do not colorize output
   -o, --output          print files instead of merging them
   -s, --sudo            use sudo and sudoedit to merge/remove files
   -3, --threeway        view diffs in 3-way fashion
-  -h, --help            show this help message and exit
   -V, --version         display version information and exit
 
 Environment Variables:
@@ -238,28 +238,28 @@ cmd() {
 
 while [[ "$1" ]]; do
 	case "$1" in
-		-f|--find)
-			USE_FIND=1 ;;
-		-l|--locate)
-			USE_LOCATE=1 ;;
-		-p|--pacmandb)
-			USE_PACDB=1 ;;
 		-b|--backup)
 			BACKUP=1 ;;
 		-c|--cachedir)
 			cachedirs+=("$2"); shift ;;
+		-f|--find)
+			USE_FIND=1 ;;
+		-h|--help)
+			usage; exit 0 ;;
+		-l|--locate)
+			USE_LOCATE=1 ;;
 		--nocolor)
 			USE_COLOR=0 ;;
 		-o|--output)
 			OUTPUTONLY=1 ;;
+		-p|--pacmandb)
+			USE_PACDB=1 ;;
 		-s|--sudo)
 			SUDO=sudo ;;
 		-3|--threeway)
 			THREE_WAY_DIFF=1 ;;
 		-V|--version)
 			version; exit 0 ;;
-		-h|--help)
-			usage; exit 0 ;;
 		*)
 			usage; exit 1 ;;
 	esac

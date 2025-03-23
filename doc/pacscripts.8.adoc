@@ -8,7 +8,7 @@ pacscripts - print out the {pre,post}_{install,remove,upgrade} scripts of a give
 
 Synopsis
 --------
-'pacscripts' <pkgname | pkgfile>
+'pacscripts' [--nocolor] <pkgname | pkgfile>
 
 
 Description
@@ -23,6 +23,9 @@ Options
 -------
 *-h, \--help*::
 	Display syntax and command-line options.
+
+*-m, \--nocolor*::
+	Do not colorize output.
 
 *-V, \--version*::
 	Display version information.

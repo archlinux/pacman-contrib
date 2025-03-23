@@ -8,7 +8,7 @@ updpkgsums - update checksums of a PKGBUILD file
 
 Synopsis
 --------
-'updpkgsums' [options] [build file]
+'updpkgsums' [--nocolor] [build file]
 
 
 Description

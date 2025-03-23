@@ -71,6 +71,8 @@ Options
 *-u, \--unique*::
 	List dependent packages once. Implies '\--linear'.
 
+*-V, \--version*::
+	Display the version.
 
 See Also
 --------

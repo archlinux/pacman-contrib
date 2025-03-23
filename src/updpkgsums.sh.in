@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# updpkgsums - update source checksums in-place in PKGBUILDs
+# updpkgsums - Update source checksums in-place in PKGBUILDs
 #
 # Copyright (C) 2012-2013 Dave Reisner <dreisner@archlinux.org>
 #
@@ -39,11 +39,11 @@ ${myname} v${myver}
 
 Update checksums of a PKGBUILD file.
 
-Usage: ${myname} [options] [build file]
+Usage: ${myname} [--nocolor] [build file]
 
 Options:
-  -m, --nocolor  do not colorize output
   -h, --help     display this help message and exit
+  -m, --nocolor  do not colorize output
   -V, --version  display version information and exit
 EOF
 }
@@ -58,10 +58,10 @@ die() {
 	exit 1
 }
 
-while (( "$#" )); do
+while [[ "$1" ]]; do
 	case "$1" in
-		-m|--nocolor) MAKEPKG_OPTS+=("$1") USE_COLOR=0; shift ;;
 		-h|--help) usage; exit ;;
+		-m|--nocolor) MAKEPKG_OPTS+=("$1") USE_COLOR=0; shift ;;
 		-V|--version) version; exit ;;
 		*) buildfile="$1"; break 2 ;;
 	esac

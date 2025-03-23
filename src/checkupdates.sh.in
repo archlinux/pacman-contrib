@@ -1,22 +1,21 @@
 #!/bin/bash
 #
-#   checkupdates: Safely print a list of pending updates.
+# checkupdates - Safely print a list of pending updates
 #
-#   Copyright (c) 2013 Kyle Keen <keenerd@gmail.com>
+# Copyright (c) 2013 Kyle Keen <keenerd@gmail.com>
 #
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation; either version 2 of the License, or
-#   (at your option) any later version.
+# This program is free software; you can redistribute it and/or
+# modify it under the terms of the GNU General Public License
+# as published by the Free Software Foundation; either version 2
+# of the License, or (at your option) any later version.
 #
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-#   You should have received a copy of the GNU General Public License
-#   along with this program.  If not, see <https://www.gnu.org/licenses/>.
-#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 declare -r myname='checkupdates'
 declare -r myver='@PACKAGE_VERSION@'
@@ -62,10 +61,10 @@ Usage: ${myname} [options]
 Options:
   -c, --change    print only when available updates differ from the last --change run
   -d, --download  download pending updates to the pacman cache
+  -h, --help      display this help message and exit
       --nocolor   do not colorize output (listing color also dependent on Color
                   option in pacman.conf)
   -n, --nosync    do not sync the temporary database
-  -h, --help      display this help message and exit
   -V, --version   display version information and exit
 
 Environment Variables:
@@ -82,8 +81,8 @@ version() {
 	printf "%s %s\n" "$myname" "$myver"
 }
 
-OPT_SHORT='dnchV'
-OPT_LONG=('download' 'nocolor' 'nosync' 'change' 'help' 'version')
+OPT_SHORT='cdhnV'
+OPT_LONG=('change' 'download' 'help' 'nocolor' 'nosync' 'version')
 
 if ! parseopts "$OPT_SHORT" "${OPT_LONG[@]}" -- "$@"; then
 	exit 1
@@ -93,17 +92,17 @@ unset OPT_SHORT OPT_LONG OPTRET
 
 while :; do
 	case $1 in
+		-c|--change)
+			CHANGE=1 ;;
 		-d|--download)
 			DOWNLOAD_CACHE=1 ;;
+		-h|--help)
+			usage
+			exit 0 ;;
 		--nocolor)
 			USE_COLOR=0 ;;
 		-n|--nosync)
 			SYNC=0 ;;
-		-c|--change)
-			CHANGE=1 ;;
-		-h|--help)
-			usage
-			exit 0 ;;
 		-V|--version)
 			version
 			exit 0 ;;

@@ -1,20 +1,20 @@
 /*
- *  pactree.c - a simple dependency tree viewer
+ * pactree.c - Simple dependency tree viewer
  *
- *  Copyright (c) 2010-2016 Pacman Development Team <pacman-dev@archlinux.org>
+ * Copyright (c) 2010-2016 Pacman Development Team <pacman-dev@archlinux.org>
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include <ctype.h>
@@ -261,13 +261,13 @@ static void usage(void)
 			"  -d, --depth <#>         limit the depth of recursion\n"
 			"      --gpgdir <path>     set an alternate home directory for GnuPG\n"
 			"  -g, --graph             generate output for graphviz's dot\n"
+			"  -h, --help              display this help message and exit\n"
 			"  -l, --linear            enable linear output\n"
 			"  -o, --optional[=depth]  controls at which depth to stop printing optional deps\n"
 			"                          (-1 for no limit)\n"
 			"  -r, --reverse           list packages that depend on the named package\n"
 			"  -s, --sync              search sync databases instead of local\n"
 			"  -u, --unique            show dependencies with no duplicates (implies -l)\n"
-			"  -h, --help              display this help message and exit\n"
 			"  -V, --version           display version information and exit\n");
 }
 
@@ -342,6 +342,9 @@ static int parse_options(int argc, char *argv[])
 			case 'g':
 				graphviz = 1;
 				break;
+			case 'h':
+				usage();
+				cleanup(0);
 			case 'l':
 				style = &graph_linear;
 				break;
@@ -366,9 +369,6 @@ static int parse_options(int argc, char *argv[])
 				unique = 1;
 				style = &graph_linear;
 				break;
-			case 'h':
-				usage();
-				cleanup(0);
 			case 'V':
 				version();
 				cleanup(0);

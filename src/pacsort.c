@@ -1,20 +1,20 @@
 /*
- *  pacsort.c - a sort utility implementing alpm_pkg_vercmp
+ * pacsort.c - Sort utility implementing alpm_pkg_vercmp
  *
- *  Copyright (c) 2010-2016 Pacman Development Team <pacman-dev@archlinux.org>
+ * Copyright (c) 2010-2016 Pacman Development Team <pacman-dev@archlinux.org>
  *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 2 of the License, or
- *  (at your option) any later version.
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
  *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
- *  along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 #include <errno.h>
@@ -424,11 +424,11 @@ static void usage(void)
 			"Usage: pacsort [options] [files ...]\n\n"
 			"Options:\n"
 			"  -f, --files            assume inputs are file paths of packages\n"
+			"  -h, --help             display this help message and exit\n"
 			"  -k, --key <index>      sort input starting on specified column\n"
 			"  -z, --null             lines end with null bytes, not newlines\n"
 			"  -r, --reverse          sort in reverse order (default: oldest to newest)\n"
 			"  -t, --separator <sep>  specify field separator (default: space)\n"
-			"  -h, --help             display this help message and exit\n"
 			"  -V, --version          display version information and exit\n\n"
 			"pacsort writes the sorted concatenation of all files, to standard output.\n"
 			"Files should contain a list of inputs to sort.\n\n"
@@ -460,6 +460,9 @@ static int parse_options(int argc, char **argv)
 			case 'f':
 				opts.filemode = 1;
 				break;
+			case 'h':
+				opts.help = 1;
+				return 0;
 			case 'k':
 				opts.sortkey = (int)strtol(optarg, NULL, 10);
 				if(opts.sortkey <= 0) {
@@ -477,15 +480,12 @@ static int parse_options(int argc, char **argv)
 					return 1;
 				}
 				break;
-			case 'z':
-				opts.null = 1;
-				break;
-			case 'h':
-				opts.help = 1;
-				return 0;
 			case 'V':
 				opts.version = 1;
 				return 0;
+			case 'z':
+				opts.null = 1;
+				break;
 			default:
 				return 1;
 		}
