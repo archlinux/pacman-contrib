@@ -6,7 +6,7 @@ Wants=network-online.target
 
 [Service]
 Type=oneshot
-ExecStart=@bindir@/pacman -Fy
+ExecStart=@bindir@/pacman -Fy --noprogressbar
 Nice=19
 StandardOutput=null
 StandardError=journal
