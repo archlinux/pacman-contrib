@@ -26,10 +26,9 @@ declare    LIBRARY=${LIBRARY:-'@libmakepkgdir@'}
 
 declare -a cachedirs oldsaves
 declare -i BACKUP=0 OUTPUTONLY=0 THREE_WAY_DIFF=0 USE_COLOR=1 USE_FIND=0 USE_LOCATE=0 USE_PACDB=0
-declare    diffprog=${DIFFPROG:-'vim -d'}
 declare    diffsearchpath=${DIFFSEARCHPATH:-/etc}
 declare    mergeprog=${MERGEPROG:-'diff3 -m'}
-declare    SUDO
+declare    diffprog SUDO
 
 # Import libmakepkg
 # shellcheck source=/dev/null
@@ -65,7 +64,7 @@ General Options:
   -V, --version         display version information and exit
 
 Environment Variables:
-  DIFFPROG        override the merge program (default: 'vim -d')
+  DIFFPROG        override the diff program (default: 'vim -d', or 'nvim -d' if EDITOR=nvim)
   DIFFSEARCHPATH  override the search path (only when using find)
                   (default: /etc)
   MERGEPROG       override the 3-way merge program (default: 'diff3 -m')
@@ -85,7 +84,7 @@ print_existing() {
 	[[ -f "$1" ]] && printf '%s\0' "$1"
 }
 
-print_existing_pacsave(){
+print_existing_pacsave() {
 	for f in "${1}"?(.+([0-9])); do
 		[[ -f $f ]] && printf '%s\0' "$f"
 	done
@@ -106,6 +105,17 @@ base_cache_tar() {
 		popd &>/dev/null || exit
 	done
 }
+
+if [[ -n $DIFFPROG ]]; then
+	diffprog=$DIFFPROG
+else
+	case $EDITOR in
+		nvim)
+			diffprog='nvim -d' ;;
+		*)
+			diffprog='vim -d' ;;
+	esac
+fi
 
 diffprog_fn() {
 	if [[ "$SUDO" ]]; then
@@ -275,9 +285,9 @@ fi
 
 if (( ! OUTPUTONLY )); then
 	if ! type -p "${diffprog%% *}" >/dev/null; then
-		die "Cannot find the $diffprog binary required for viewing differences."
+		die "Cannot find the ${diffprog%% *} binary required for viewing differences."
 	elif ! type -p "${mergeprog%% *}" >/dev/null; then
-		die "Cannot find the $mergeprog binary required for merging differences."
+		die "Cannot find the ${mergeprog%% *} binary required for merging differences."
 	fi
 fi
 

@@ -62,7 +62,7 @@ General Options
 Environment
 -----------
 *DIFFPROG*::
-	Override the default 'vim -d' merge program.
+	Override the default diff program 'vim -d', or 'nvim -d' if EDITOR=nvim.
 
 *DIFFSEARCHPATH*::
 	Override the default search path '/etc', only when using find.
