@@ -26,7 +26,7 @@ test:
 
 typos:
   image: alpine
-  before_script: apk add typos --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/
+  before_script: apk add typos
   script: typos
 
 cppcheck:
