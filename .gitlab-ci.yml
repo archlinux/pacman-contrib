@@ -1,18 +1,18 @@
 workflow:
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == 'push'
       when: never
-    - if: '$CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push"'
+    - if: $CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == 'push'
 
 .changes-workflow:
   rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" || ($CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == "push")'
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event' || ($CI_COMMIT_BRANCH && $CI_PIPELINE_SOURCE == 'push')
       changes:
         paths:
           - $FILE_GLOB
         compare_to: 'master'
-    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == "push"'
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS && $CI_PIPELINE_SOURCE == 'push'
       when: never
 
 test:
@@ -32,7 +32,7 @@ typos:
 cppcheck:
   image: alpine
   variables:
-    FILE_GLOB: "src/*.c"
+    FILE_GLOB: 'src/*.c'
   before_script: apk add cppcheck
   script: cppcheck --error-exitcode=1 --suppress=unknownMacro src/*.c
   rules:
@@ -43,7 +43,7 @@ markdownlint:
     name: davidanson/markdownlint-cli2
     entrypoint: ['']
   variables:
-    FILE_GLOB: "*.md"
+    FILE_GLOB: '*.md'
   script: markdownlint-cli2
   rules:
     - !reference [.changes-workflow, rules]
@@ -51,7 +51,7 @@ markdownlint:
 shellcheck:
   image: koalaman/shellcheck-alpine
   variables:
-    FILE_GLOB: "**/*.sh*"
+    FILE_GLOB: '**/*.sh*'
   script: find . -name '*.sh*' -exec shellcheck --color=always {} +
   rules:
     - !reference [.changes-workflow, rules]
@@ -59,7 +59,7 @@ shellcheck:
 vint:
   image: alpine
   variables:
-    FILE_GLOB: "src/vim/*/*.vim"
+    FILE_GLOB: 'src/vim/*/*.vim'
   before_script: apk add vint py3-setuptools
   script: vint src/vim
   rules:
