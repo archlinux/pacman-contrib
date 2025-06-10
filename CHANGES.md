@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.12.0] - 2025-06-09
+
+### Added
+
+- vim: syntax: Add loong64 architecture (!58) (Xiaotian Wu)
+- pacdiff: Default to nvim for diff prog if EDITOR=nvim (7116a9a5) (Daniel M. Capella)
+
+### Fixed
+
+- Consistency fixes (21b66f38, 09676c70, cf6e243e) (Daniel M. Capella)
+
 ## [1.11.0] - 2025-02-01
 
 ### Added
@@ -316,6 +327,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 [1.10.5]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.4...v1.10.5
 [1.10.6]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.5...v1.10.6
 [1.11.0]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.6...v1.11.0
-[unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.6...master
+[1.12.0]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.11.0...v1.12.0
+[unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.12.0...master
 
 <!-- markdownlint-disable-file MD013 MD024 -->
