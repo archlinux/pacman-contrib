@@ -1,8 +1,6 @@
 # pacman-contrib
 
-This repository contains contributed scripts to pacman.
-
-*Note*: These existed in pacman.git, but were moved out to ease maintenance.
+Contrib repository for the pacman package management project.
 
 ## How to build
 
@@ -16,34 +14,48 @@ make check
 make install DESTDIR="$pkgdir"
 ```
 
-## Scripts available in this repository
+## Contributions
 
-- checkupdates - print a list of pending updates without touching the system
-  sync databases (for safety on rolling release distributions).
+- systemd services and timers for paccache and `pacman -Fy`.
 
-- paccache - a flexible package cache cleaning utility that allows greater
-  control over which packages are removed.
+- Vim runtime files for PKGBUILD and SRCINFO files.
 
-- pacdiff - a simple pacnew/pacsave updater for /etc/.
+### Scripts
 
-- paclist - list all packages installed from a given repository. Useful for
-  seeing which packages you may have installed from the testing repositories,
-  for instance.
+checkupdates
+:   Print a list of pending updates without touching the system sync databases
+    (for safety on rolling release distributions).
 
-- paclog-pkglist - list currently installed packages based pacman's log.
+paccache
+:   Flexible package cache cleaning utility that allows greater control over
+    which packages are removed.
 
-- pacscripts - print out the {pre,post}\_{install,remove,upgrade}
-  scripts of a given package.
+pacdiff
+:   pacnew/pacsave updater for /etc/.
 
-- pacsearch - a colorized search combining both -Ss and -Qs output. Installed
-  packages are easily identified with a `[installed]`, and
-  local-only packages are also listed.
+paclist
+:   List all packages installed from a given repository. Useful for seeing which
+    packages you may have installed from the testing repositories, for instance.
 
-- pacsort - concatenate the given files, sort them, and write them to standard
-  output.
+paclog-pkglist
+:   List currently installed packages based pacman's log.
 
-- pactree - a package dependency tree viewer.
+pacscripts
+:   Print the {pre,post}\_{install,remove,upgrade} scripts of a given package.
 
-- rankmirrors - rank pacman mirrors by their connection and opening speed.
+pacsearch
+:   Colorized search combining both -Ss and -Qs output. Installed packages are
+    easily identified with a `[installed]`, and local-only packages are also
+    listed.
 
-- updpkgsums - perform an in-place update of the checksums in a PKGBUILD.
+pacsort
+:   Concatenate the given files, sort them, and write them to standard output.
+
+pactree
+:   Package dependency tree viewer.
+
+rankmirrors
+:   Rank pacman mirrors by their connection and opening speed.
+
+updpkgsums
+:   Perform an in-place update of the checksums in a PKGBUILD.
