@@ -1,0 +1,10 @@
+#!/bin/sh
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2
+
+SOB=$(git var GIT_COMMITTER_IDENT | sed -n 's/^\(.*>\).*$/Signed-off-by: \1/p')
+git interpret-trailers --in-place --trailer "$SOB" "$COMMIT_MSG_FILE"
+if test -z "$COMMIT_SOURCE"; then
+  /usr/bin/perl -i.bak -pe 'print "\n" if !$first_line++' "$COMMIT_MSG_FILE"
+fi
