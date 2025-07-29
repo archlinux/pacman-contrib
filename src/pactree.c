@@ -323,7 +323,9 @@ static int parse_options(int argc, char *argv[])
 				gpgdir = optarg;
 				break;
 			case 'a':
-				style = &graph_default;
+				if(!unique) {
+					style = &graph_default;
+				}
 				break;
 			case 'b':
 				dbpath = optarg;
