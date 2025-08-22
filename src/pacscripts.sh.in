@@ -138,7 +138,7 @@ while [[ $1 ]]; do
 		-h|--help) usage; exit 0 ;;
 		-m|--nocolor) USE_COLOR=0; shift ;;
 		-V|--version) version; exit 0 ;;
-		*) print_scriptlet "$1"; break 2 ;;
+		*) print_scriptlet "$1"; exit 0 ;;
 	esac
 done
 
