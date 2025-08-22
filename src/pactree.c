@@ -613,6 +613,21 @@ int main(int argc, char *argv[])
 	alpm_pkg_t *pkg;
 	alpm_list_t *dblist = NULL;
 
+	char cur_dbpath[PATH_MAX];
+	FILE *f = popen("pacman-conf DBPath", "r");
+	if (f) {
+	    if (fgets(cur_dbpath, sizeof(cur_dbpath), f) != NULL) {
+		size_t len = strlen(cur_dbpath);
+		if (len > 0) {
+		    if (cur_dbpath[len - 1] == '\n') {
+			cur_dbpath[len - 1] = '\0';
+		    }
+		    dbpath = cur_dbpath;
+		}
+	    }
+	    pclose(f);
+	}
+
 	if((ret = parse_options(argc, argv)) != 0) {
 		cleanup(ret);
 	}
