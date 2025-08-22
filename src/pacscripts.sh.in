@@ -84,16 +84,14 @@ print_db() {
 			echo
 			return 0
 		else
-			error "Package $1 does not include any .INSTALL script"
-			return 1
+			die "Package $1 does not include any .INSTALL script"
 		fi
 	done
 }
 
 print_pkg() {
 	if ! bsdtar -xqOf "$1" .INSTALL 2>/dev/null; then
-		error "Package $1 does not include any .INSTALL script"
-		return 1
+		die "Package $1 does not include any .INSTALL script"
 	fi
 	echo
 }
@@ -117,14 +115,12 @@ print_scriptlet() {
 		return
 	fi
 	if ! pacman -Si "$1" &>/dev/null; then
-		error "Package $1 not found"
-		return 1
+		die "Package $1 not found"
 	fi
 	url=$(pacman -Sddp "$1")
 	if [[ $url != file://* ]]; then
 		if ! runasroot pacman -Sddw --logfile /dev/null --noconfirm "$1" >&2; then
-			error "Failed to download $1"
-			return 1
+			die "Failed to download $1"
 		fi
 		echo >&2
 		url=$(pacman -Sddp "$1")
@@ -133,14 +129,16 @@ print_scriptlet() {
 	return
 }
 
-while [[ $1 ]]; do
-	case "$1" in
-		-h|--help) usage; exit 0 ;;
-		-m|--nocolor) USE_COLOR=0; shift ;;
-		-V|--version) version; exit 0 ;;
-		*) print_scriptlet "$1"; exit 0 ;;
-	esac
-done
-
-usage
-exit 1
+if [[ (($# -eq 1 && $1 != '-m') || ($# -eq 2 && $1 == '-m'))  ]]; then
+	while [[ $1 ]]; do
+		case "$1" in
+			-h|--help) usage; exit 0 ;;
+			-m|--nocolor) USE_COLOR=0; shift ;;
+			-V|--version) version; exit 0 ;;
+			*) print_scriptlet "$1"; break 2 ;;
+		esac
+	done
+else
+	usage
+	exit 1
+fi
