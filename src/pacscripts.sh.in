@@ -129,16 +129,19 @@ print_scriptlet() {
 	return
 }
 
-if [[ (($# == 1 && $1 != '-m') || ($# == 2 && $1 == '-m'))  ]]; then
-	while [[ $1 ]]; do
+case $# in
+	2)
+		case "$1" in
+			-m|--nocolor) USE_COLOR=0; shift ;;
+			*) usage; exit 1 ;;
+		esac
+		;&
+	1)
 		case "$1" in
 			-h|--help) usage; exit 0 ;;
-			-m|--nocolor) USE_COLOR=0; shift ;;
 			-V|--version) version; exit 0 ;;
-			*) print_scriptlet "$1"; break 2 ;;
+			*) print_scriptlet "$1" ;;
 		esac
-	done
-else
-	usage
-	exit 1
-fi
+		;;
+	*) usage; exit 1 ;;
+esac
