@@ -32,6 +32,11 @@ indicate who has "signed" the patch - who has approved it.
 Please use your real name and email address. Feel free to "scramble" the
 address if you're afraid of spam.
 
+Note: This can automated with `.githooks/prepare-commit-msg`:
+`ln -rs .githooks/prepare-commit-msg .git/hooks`
+or
+`git config --local core.hooksPath .githooks`
+
 * Describe your commits.
 
 It helps if you describe the overview and goals in the Git commit log. This
@@ -42,7 +47,7 @@ done, and allows better feedback.
 
 Creating a merge request
 ------------------------
-See https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html.
+See https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/.
 
 --
 * Don't get discouraged

@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.13.0] - 2025-08-21
+
+### Added
+
+- pactree: get the pacman db path from the configuration (!60) (Alberto Garcia)
+
 ## [1.12.0] - 2025-06-09
 
 ### Added
@@ -328,6 +334,7 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 [1.10.6]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.5...v1.10.6
 [1.11.0]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.10.6...v1.11.0
 [1.12.0]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.11.0...v1.12.0
-[unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.12.0...master
+[1.13.0]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.12.0...v1.13.0
+[unreleased]: https://gitlab.archlinux.org/pacman/pacman-contrib/-/compare/v1.13.0...master
 
 <!-- markdownlint-disable-file MD013 MD024 -->
