@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 
 ## [Unreleased]
 
+## [1.13.1] - 2025-12-11
+
+### Fixed
+
+- pactree: Fix `-ua`: disallow overwriting unique's linear style (!61) (Robert Uhde)
+- checkupdates: Disable filesystem sandbox for pacman v7.1.0 compatibility (!64) (Robin Candau)
+
 ## [1.13.0] - 2025-08-21
 
 ### Added
